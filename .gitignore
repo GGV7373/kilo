@@ -1,1 +1,19 @@
-kilo
+# binary
+/kilo
+
+# build output
+*.o
+*.a
+*.so
+*.out
+*.d
+
+# debug
+core
+*.dSYM/
+*.log
+
+# clangd / bear (nvim LSP)
+compile_commands.json
+.cache/
+.clangd/
