@@ -11,22 +11,18 @@ void disableRawMode(){
 }
 
 
-void enableRewMode () {
+void enableRawMode () {
     tcgetattr(STDIN_FILENO, &orgi_termios);
     atexit(disableRawMode);
     
     struct termios raw = orgi_termios;
     raw.c_lflag &= ~(ECHO | ICANON);
 
-    tcgetattr(STDIN_FILENO, &raw);
-
-    raw.c_lflag &= ~(ECHO);
-    
     tcsetattr(STDIN_FILENO, TCIFLUSH, &raw);
 }
 
 int main() {
-    enableRewMode();
+    enableRawMode();
 
     char c;
     while (read(STDIN_FILENO, &c, 1) == 1 && c != 'q');
