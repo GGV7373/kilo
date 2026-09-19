@@ -1,3 +1,5 @@
+#include <ctype.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
@@ -25,7 +27,13 @@ int main() {
     enableRawMode();
 
     char c;
-    while (read(STDIN_FILENO, &c, 1) == 1 && c != 'q');
+    while (read(STDIN_FILENO, &c, 1) == 1 && c !='q') {
+        if (iscntrl(c)) {
+                    printf("%d\n", c);
+        } else {
+        printf("%d\n ('%c')\n", c, c);
+        }
+    }
 
-  return 0;
+    return 0;
 }
