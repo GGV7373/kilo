@@ -57,7 +57,6 @@ int main() {
         if(c == 'q') break;
     }
 
-
     return 0;
 }
 
